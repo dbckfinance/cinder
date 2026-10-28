@@ -1,0 +1,18 @@
+[package]
+name = "cinder"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+calamine = "0.26"
+csv = "1"
+flate2 = "1"
+fontdue = "0.9"
+lopdf = "0.34"
+image = { version = "0.25.10", default-features = false, features = ["jpeg", "png", "gif", "webp", "bmp", "tiff", "ico"] }
+pdf-extract = "0.7"
+tar = "0.4"
+tiny-skia = "0.11"
+tray-icon = { version = "0.26.1", default-features = false }
+windows = { version = "0.62.2", features = ["Data_Pdf", "Storage_Streams", "Win32_Foundation", "Win32_Graphics_Gdi", "Win32_Security", "Win32_System_Com", "Win32_System_DataExchange", "Win32_System_LibraryLoader", "Win32_System_Memory", "Win32_System_Ole", "Win32_System_Registry", "Win32_System_Threading", "Win32_System_Variant", "Win32_System_WinRT", "Win32_UI_Accessibility", "Win32_UI_HiDpi", "Win32_UI_Input_KeyboardAndMouse", "Win32_UI_Shell", "Win32_UI_Shell_Common", "Win32_UI_WindowsAndMessaging"] }
+zip = { version = "=2.2.3", default-features = false, features = ["deflate"] }

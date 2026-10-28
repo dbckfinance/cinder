@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f4f4" />
+    <meta name="description" content="Cinder convertit les fichiers sur Windows, en local. Sur le bureau, Maj ouvre les formats, Alt les outils, Ctrl les actions." />
+    <title>Cinder — le convertisseur local pour Windows</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="#haut" aria-label="Cinder, accueil"><span class="brand-mark" aria-hidden="true"></span>Cinder</a>
+      <nav aria-label="Navigation">
+        <a class="quiet-link" href="#geste">Le geste</a>
+        <a class="quiet-link" href="#formats">Formats</a>
+        <a class="windows-pill" href="download/0.1.1/Cinder.exe" download="Cinder.exe">Pour Windows</a>
+      </nav>
+    </header>
+
+    <main id="haut">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <h1 id="hero-title">Le convertisseur local,<br />sans quitter le bureau.</h1>
+          <p class="hero-description">Maintiens Maj sur une icône. La roue s'ouvre sous le curseur. Tu choisis le format, tu relâches.</p>
+          <p class="hero-local">Tout reste sur le PC. Le fichier d'origine ne bouge pas.</p>
+        </div>
+
+        <div class="scene" id="playground" aria-label="Bureau. Glisse un fichier, puis maintiens Maj.">
+          <div class="landscape" aria-hidden="true"><img src="images/cinder-sky.jpg" alt="" width="1536" height="1024" draggable="false" /></div>
+          <div class="scene-top-fade" aria-hidden="true"></div>
+          <div class="scene-bottom-fade" aria-hidden="true"></div>
+          <div class="hint-wrap">
+            <div class="gesture-hint" id="gesture-hint">
+              <span id="hint-text">Glisse ce fichier</span>
+              <svg class="hint-arrow" width="180" height="135" viewBox="0 0 180 135" aria-hidden="true"><path id="hint-path" d="M133 10C140 45 76 71 22 94M22 94L29 79M22 94L39 94" /></svg>
+            </div>
+          </div>
+          <div class="files" id="files"></div>
+        </div>
+      </section>
+
+      <section class="tool-stats content-width" aria-label="En bref">
+        <div class="tool-stat">
+          <strong>11</strong>
+          <h2>Familles de fichiers</h2>
+          <p>Images, vidéo, audio, PDF, documents, EPUB, diapositives, tableurs, sous-titres et archives.</p>
+        </div>
+        <div class="tool-stat">
+          <strong>10</strong>
+          <h2>Outils automatiques</h2>
+          <p>Compresser, réduire, pivoter, séparer un PDF, extraire une archive, couper le son.</p>
+        </div>
+        <div class="tool-stat">
+          <strong>5</strong>
+          <h2>Actions de fichier</h2>
+          <p>Chemin, Explorateur, terminal, copier et déplacer. Le fichier d'origine reste la source.</p>
+        </div>
+      </section>
+
+      <section class="details content-width" id="geste" aria-labelledby="details-title">
+        <div class="bento-tabs" role="tablist" aria-label="Type de fichier">
+          <button type="button" role="tab" id="tab-images" data-kind="images" aria-selected="true" aria-controls="bento-panel">Images</button>
+          <button type="button" role="tab" id="tab-video" data-kind="video" aria-selected="false" aria-controls="bento-panel" tabindex="-1">Vidéo</button>
+          <button type="button" role="tab" id="tab-audio" data-kind="audio" aria-selected="false" aria-controls="bento-panel" tabindex="-1">Audio</button>
+          <button type="button" role="tab" id="tab-pdf" data-kind="pdf" aria-selected="false" aria-controls="bento-panel" tabindex="-1">PDF</button>
+          <button type="button" role="tab" id="tab-documents" data-kind="documents" aria-selected="false" aria-controls="bento-panel" tabindex="-1">Documents</button>
+          <button type="button" role="tab" id="tab-slides" data-kind="slides" aria-selected="false" aria-controls="bento-panel" tabindex="-1">Diapositives</button>
+          <button type="button" role="tab" id="tab-sheets" data-kind="sheets" aria-selected="false" aria-controls="bento-panel" tabindex="-1">Tableurs</button>
+          <button type="button" role="tab" id="tab-epub" data-kind="epub" aria-selected="false" aria-controls="bento-panel" tabindex="-1">EPUB</button>
+          <button type="button" role="tab" id="tab-text" data-kind="text" aria-selected="false" aria-controls="bento-panel" tabindex="-1">Texte</button>
+          <button type="button" role="tab" id="tab-archives" data-kind="archives" aria-selected="false" aria-controls="bento-panel" tabindex="-1">Archives</button>
+        </div>
+        <div id="bento-panel" role="tabpanel" aria-labelledby="tab-images" tabindex="0">
+          <article class="bento-shortcut">
+            <h2 id="details-title">Images</h2>
+            <div class="wheel-pair">
+              <section class="wheel-preview" aria-labelledby="conversion-wheel-title">
+                <div class="wheel-keys"><span class="demo-key"><span>⇧</span>maj</span></div>
+                <h3 id="conversion-wheel-title">Convertir</h3>
+                <div class="wheel-stage">
+                  <div id="convert-fan" class="preview-fan"></div>
+                  <p id="convert-result" class="demo-result">Convertir en PNG</p>
+                </div>
+              </section>
+              <section class="wheel-preview" aria-labelledby="tools-wheel-title">
+                <div class="wheel-keys"><span class="demo-key"><span>Alt</span>alt</span></div>
+                <h3 id="tools-wheel-title">Outils</h3>
+                <div class="wheel-stage">
+                  <div id="tool-fan" class="preview-fan"></div>
+                  <p id="tool-result" class="demo-result">Compresser</p>
+                </div>
+              </section>
+            </div>
+            <p class="wheel-note">Maj liste les formats. Alt ajoute les outils, puis les mêmes formats. La touche reste libre pour Alt+Tab et Ctrl+C. Échap ferme la roue.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="file-actions-section content-width" id="actions" aria-labelledby="actions-title">
+        <div class="actions-heading">
+          <div>
+            <h2 id="actions-title">Actions</h2>
+            <p>N'importe quel fichier, puis Ctrl.</p>
+          </div>
+        </div>
+        <div class="file-actions-layout">
+          <section class="wheel-preview file-actions-preview" aria-labelledby="actions-wheel-title">
+            <div class="wheel-keys"><span class="demo-key"><span>Ctrl</span>ctrl</span></div>
+            <h3 id="actions-wheel-title">Le fichier</h3>
+            <div class="wheel-stage">
+              <div id="action-fan" class="preview-fan"></div>
+              <p id="action-result" class="demo-result">Copier le chemin</p>
+            </div>
+          </section>
+          <div class="file-action-cards">
+            <article class="file-action-card">
+              <h3>Chemin et Explorateur</h3>
+              <p>Le chemin complet va dans le presse-papiers, ou le dossier s'ouvre dans l'Explorateur avec le fichier visible.</p>
+            </article>
+            <article class="file-action-card">
+              <h3>Terminal</h3>
+              <p>Une fenêtre s'ouvre dans le dossier du fichier. Pratique juste avant une commande.</p>
+            </article>
+            <article class="file-action-card">
+              <h3>Copier</h3>
+              <p>Une copie est écrite à l'endroit choisi. Si le nom existe déjà, Cinder en trouve un autre.</p>
+            </article>
+            <article class="file-action-card">
+              <h3>Déplacer</h3>
+              <p>Le fichier change de dossier. La conversion, elle, ne déplace jamais l'original : elle écrit à côté.</p>
+            </article>
+          </div>
+        </div>
+        <p class="actions-footnote">Ctrl reste libre pour les raccourcis du système. La roue des actions ne compte pas dans les minutes gagnées.</p>
+      </section>
+
+      <section class="formats content-width" id="formats" aria-labelledby="formats-title">
+        <div class="formats-heading"><h2 id="formats-title">Formats</h2></div>
+        <div class="format-list">
+          <div class="format-row"><h3>Images</h3><p>JPG PNG WebP BMP GIF TIFF PDF</p><span class="format-note">Maj et Alt</span></div>
+          <div class="format-row"><h3>Vidéo</h3><p>MP4 MP3 MKV GIF WebM WMV AVI</p><span class="format-note">ffmpeg installé</span></div>
+          <div class="format-row"><h3>Audio</h3><p>M4A WMA WAV AIFF FLAC Opus OGG</p><span class="format-note">ffmpeg installé</span></div>
+          <div class="format-row"><h3>PDF</h3><p>TXT MD HTML DOCX EPUB PNG JPG PPTX XLSX</p><span class="format-note">Une image par page</span></div>
+          <div class="format-row"><h3>Documents</h3><p>TXT MD HTML PDF DOCX EPUB</p><span class="format-note">DOCX, ODT et RTF</span></div>
+          <div class="format-row"><h3>Diapositives</h3><p>PDF JPG PNG</p><span class="format-note">PPTX, PPT et ODP</span></div>
+          <div class="format-row"><h3>Tableurs</h3><p>ODS CSV TSV PDF</p><span class="format-note">XLSX, XLS, CSV, ODS</span></div>
+          <div class="format-row"><h3>EPUB</h3><p>HTML TXT MD PDF DOCX</p><span class="format-note">Le texte du livre</span></div>
+          <div class="format-row"><h3>Texte</h3><p>TXT MD HTML PDF DOCX EPUB</p><span class="format-note">TXT, MD et HTML</span></div>
+          <div class="format-row"><h3>Sous-titres</h3><p>VTT SRT TXT</p><span class="format-note"></span></div>
+          <div class="format-row"><h3>Archives</h3><p>TAR GZIP</p><span class="format-note">ZIP à extraire</span></div>
+        </div>
+      </section>
+
+      <section class="privacy content-width" id="local" aria-labelledby="privacy-title">
+        <div class="privacy-copy">
+          <p class="privacy-eyebrow">Sur la machine</p>
+          <h2 id="privacy-title">Les fichiers ne partent pas.</h2>
+          <p>Un convertisseur en ligne demande une copie. Cinder lit le fichier là où il est, et écrit le résultat dans le même dossier.</p>
+        </div>
+        <div class="privacy-points">
+          <article>
+            <span aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 19V6M12 6l-5 5M12 6l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3>Rien n'est envoyé</h3>
+            <p>Pas de compte, pas de serveur Cinder. La vidéo et l'audio passent par ffmpeg, déjà installé sur le PC.</p>
+          </article>
+          <article>
+            <span aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 11.2 12 5l8 6.2V19a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+            <h3>L'original reste</h3>
+            <p>Jamais d'écrasement. Si le nom existe déjà, Cinder choisit le suivant. Deux minutes sont comptées par fichier converti.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="download-section content-width" id="lancer" aria-labelledby="download-title">
+        <div class="download-intro">
+          <p class="download-eyebrow">Lancer</p>
+          <h2 id="download-title">Un clic, et la roue<br />est là.</h2>
+          <p>Le fichier s'installe dans ton compte. Le raccourci arrive sur le bureau et dans le menu Démarrer, et le tableau montre les minutes gagnées.</p>
+        </div>
+        <div class="download-card">
+          <h3>Cinder pour Windows</h3>
+          <ul class="download-includes">
+            <li>Maj convertit, Alt ajoute les outils, Ctrl agit sur le fichier</li>
+            <li>L'icône à côté de l'horloge indique si Cinder est activé</li>
+            <li>Fermer le tableau le cache. Quitter se fait dans le menu de l'icône</li>
+          </ul>
+          <a class="windows-pill windows-pill-large" href="download/0.1.1/Cinder.exe" download="Cinder.exe">Télécharger</a>
+          <p class="download-compatibility">Windows 10 ou 11. L'installation ne demande pas les droits administrateur.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer content-width">
+      <a class="wordmark" href="#haut"><span class="brand-mark" aria-hidden="true"></span>Cinder</a>
+      <div class="footer-actions">
+        <a class="support-link" href="#geste">Le geste</a>
+        <a class="support-link" href="#formats">Formats</a>
+        <a class="support-link" href="#local">Local</a>
+      </div>
+    </footer>
+    <div id="drag-ghost" class="drag-ghost" hidden></div>
+    <div id="drag-shift-prompt" class="drag-shift-prompt" hidden>
+      <p>Appuie sur Maj</p>
+      <span class="demo-key" id="shift-key"><span>⇧</span>maj</span>
+    </div>
+    <div id="radial-menu" class="radial-menu" hidden></div>
+    <script src="app.js"></script>
+  </body>
+</html>
