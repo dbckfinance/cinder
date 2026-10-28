@@ -2,6 +2,8 @@
 
 Convertisseur local pour Windows. Sur le bureau ou dans l'Explorateur de fichiers, maintiens une touche : la roue s'affiche sous le curseur, et son contenu dépend du fichier qui est là. Déplace la souris sur un segment, puis relâche. Le fichier d'origine reste en place. Le résultat est écrit à côté.
 
+![Bureau avec les fichiers à convertir](site/images/readme-bureau.png)
+
 ## Lancer
 
 Un raccourci **Cinder** est posé sur le bureau et dans le menu Démarrer. Un clic ouvre le tableau de bord : les minutes gagnées, et un bouton ON / OFF. L'icône du raccourci est la roue. Cinder reste aussi dans les icônes en bas. Le clic droit propose Pause et Quitter. Une seule instance tourne à la fois.
@@ -12,9 +14,13 @@ Le journal est dans `%LOCALAPPDATA%\Cinder\cinder.log`.
 
 Clique d'abord le bureau ou une fenêtre de l'Explorateur pour qu'elle soit au premier plan. Le fichier sous le curseur est celui de la roue.
 
+![Roue Maj pour convertir, roue Alt pour les outils](site/images/readme-roues.png)
+
 - Maintiens **Maj** : les formats du fichier (image, vidéo, audio, sous-titre, archive, tableur, texte, EPUB, PDF, document ou diapositives).
 - Maintiens **Alt** : les outils automatiques de ce type. Une image se compresse, se réduit ou pivote. Une vidéo se compresse, perd son son ou donne une image. Un audio se compresse ou se normalise. Une archive s'extrait.
 - Maintiens **Ctrl** : copier le chemin, afficher dans l'Explorateur, terminal, copier, déplacer.
+
+![Roue Ctrl pour les actions sur le fichier](site/images/readme-actions.png)
 
 La roue suit le moment où la touche est enfoncée. Le segment sous la souris est orange. Relâcher la touche sur un segment applique l'action. Relâcher au centre laisse la roue ouverte : un clic sur un segment confirme, Échap ferme.
 
