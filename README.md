@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="site/images/readme-logo.png" alt="Logo Cinder" width="96" />
+</p>
+
 # Cinder
 
 Convertisseur local pour Windows. Sur le bureau ou dans l'Explorateur de fichiers, maintiens une touche : la roue s'affiche sous le curseur, et son contenu dépend du fichier qui est là. Déplace la souris sur un segment, puis relâche. Le fichier d'origine reste en place. Le résultat est écrit à côté.
